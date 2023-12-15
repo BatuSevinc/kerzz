@@ -12,8 +12,8 @@ const Results = ({searchValue,filterSelected}) => {
   const [myLongitude, setMyLongitude] = useState(0);
   const [datas, setDatas] = useState([]);
   const [page, setPage] = useState(1);
-  const pageSize = 12;
-
+  const [loading, setLoading] = useState(false);
+  const pageSize = 24;
   useEffect(() => {
     const successHandler = (position) => {
       const { latitude, longitude } = position.coords;
@@ -29,6 +29,7 @@ const Results = ({searchValue,filterSelected}) => {
   }, []);
 
   const fetchData = (latitude, longitude, skip, limit) => {
+    setLoading(true)
     axios
       .post(
         apiUrl,
@@ -47,22 +48,23 @@ const Results = ({searchValue,filterSelected}) => {
       )
       .then((response) => {
         setDatas((prevDatas) => (page === 1 ? response.data.response : [...prevDatas, ...response.data.response]));
+        setLoading(false)
       });
   };
 
   const handleScroll = () => {
-    if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
-      setPage((prevPage) => prevPage + 1);
-      fetchData(myLatitude, myLongitude, (page - 1) * pageSize, pageSize);
-    }
-  };
+   if (window.scrollY + window.innerHeight === Math.max(document.documentElement.scrollHeight, document.body.scrollHeight)) {
+    setPage((prevPage) => prevPage + 1);
+    fetchData(myLatitude, myLongitude, (page - 1) * pageSize, pageSize);
+  }
+};
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [page, myLatitude, myLongitude]);
+useEffect(() => {
+  window.addEventListener("scroll", handleScroll);
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+  };
+}, [page, myLatitude, myLongitude]);
 
   const filteredDatas = datas.filter((data) =>
   data.title.toLowerCase().includes(searchValue.toLowerCase())
@@ -174,6 +176,7 @@ if (filterSelected === "3Point") {
         </div>
       ))}
       </div>
+      {loading && <p>Loading...</p>}
     </div>
   );
 };

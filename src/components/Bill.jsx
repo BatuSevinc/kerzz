@@ -3,7 +3,7 @@ import {IoMdClose} from '../helpers'
 
 const Bill = ({billBasket,setBillBasket}) => {
   return (
-    <div className={`flex flex-col z-10 gap-3 overflow-auto absolute ${billBasket ? "translate-y-[0px]" : "translate-y-[-1150px]"} bg-[#e3ebed] pt-20 p-5 inset-0 w-[100vw] h-[100%] duration-1000 transition-all`}>
+    <div className={`flex flex-col z-10 gap-3 overflow-auto fixed ${billBasket ? "translate-y-[0px]" : "translate-y-[-1150px]"} bg-[#e3ebed] pt-20 p-5 inset-0 w-[100vw] h-[100%] duration-1000 transition-all`}>
                 <div onClick={() => setBillBasket(false)} className='absolute top-5 right-5 cursor-pointer'>
             <IoMdClose size={22} color='#595656'/>
             </div>
