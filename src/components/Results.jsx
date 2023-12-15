@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ShoppingBasket, Group1 } from "../helpers";
 import calculateDistance from '../helpers/CalculateDistance'
 import axios from "axios";
-
+import _ from "lodash";
 const Results = ({searchValue,filterSelected}) => {
   const apiKey = process.env.REACT_APP_API_KEY;
   const apiUrl = process.env.REACT_APP_BASE_URL
@@ -29,7 +29,10 @@ const Results = ({searchValue,filterSelected}) => {
   }, []);
 
   const fetchData = (latitude, longitude, skip, limit) => {
-    setLoading(true)
+    if (loading) {
+      return;
+    }
+    setLoading(true);
     axios
       .post(
         apiUrl,
@@ -48,21 +51,26 @@ const Results = ({searchValue,filterSelected}) => {
       )
       .then((response) => {
         setDatas((prevDatas) => (page === 1 ? response.data.response : [...prevDatas, ...response.data.response]));
-        setLoading(false)
+        setLoading(false);
       });
   };
 
   const handleScroll = () => {
-   if (window.scrollY + window.innerHeight === Math.max(document.documentElement.scrollHeight, document.body.scrollHeight)) {
-    setPage((prevPage) => prevPage + 1);
-    fetchData(myLatitude, myLongitude, (page - 1) * pageSize, pageSize);
-  }
-};
+    const scrolledToBottom =
+      window.innerHeight + window.scrollY >= document.body.offsetHeight;
+  
+    if (scrolledToBottom) {
+      fetchData(myLatitude, myLongitude, page * pageSize, pageSize);
+      setPage((prevPage) => prevPage + 1);
+    }
+  };
+
+const handleScrollThrottled = _.throttle(handleScroll);
 
 useEffect(() => {
-  window.addEventListener("scroll", handleScroll);
+  window.addEventListener("scroll", handleScrollThrottled);
   return () => {
-    window.removeEventListener("scroll", handleScroll);
+    window.removeEventListener("scroll", handleScrollThrottled);
   };
 }, [page, myLatitude, myLongitude]);
 

@@ -36,3 +36,4 @@ Farklı ekran boyutlarına uyum sağlayacak şekilde tasarlanmıştır.
  - Tailwind Css
  - React Icons
  - Google Fonts
+ - Lodash
