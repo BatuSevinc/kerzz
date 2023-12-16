@@ -18,8 +18,8 @@ const ResultDetail = ({selectedProduct,setSelectedProduct,favorites,setFavorites
     <div className='fixed w-[100vw] bg-[rgba(0,0,0,0.7)] h-[100vh] top-0 left-0'>
         <div className='fixed flex flex-col top-40 left-2 sm:left-4 md:left-6 lg:left-8 xl:left-9 2xl:left-10 bg-[#cdcdcc] w-[95vw] h-[60vh] lg:h-[80vh] lg:top-20 p-3'>
             <div className='flex justify-end'><IoMdClose className='cursor-pointer' onClick={() => setSelectedProduct("")} size={24}/></div>
-            <div className='pt-3 text-[12px] pl-2 text-gray-500'>{selectedProduct.type && selectedProduct.type}</div>
-            <div className='pb-3'>
+            <div className='pt-3 text-[12px] pl-2 text-gray-500 xs:flex xs:justify-center'>{selectedProduct.type && selectedProduct.type}</div>
+            <div className='pb-3 xs:flex xs:justify-center'>
                         {selectedProduct.images.length > 0 ? (
                             <img
                             className="rounded-[9pt]"
@@ -39,7 +39,7 @@ const ResultDetail = ({selectedProduct,setSelectedProduct,favorites,setFavorites
                             />
                           )}
             </div>
-            <div>
+            <div className='text-center xs:flex xs:flex-col xs:items-center'>
                 {selectedProduct.title ?
                 <div className='font-semibold pl-1'>
                     {selectedProduct.title}
@@ -50,12 +50,12 @@ const ResultDetail = ({selectedProduct,setSelectedProduct,favorites,setFavorites
                 </div>    
             }
             {
-            <div className='pt-2 pl-1 pr-5 min-h-[80px] max-h-[80px] overflow-hidden'>
+            <div className='pt-2 pl-1 pr-5 min-h-[80px] max-h-[80px] overflow-hidden text-center'>
             {selectedProduct.text && selectedProduct.text}
             </div>
             }
             </div>
-            <div className='flex justify-between'>
+            <div className='flex justify-between lg:pt-32'>
             
             <div className="flex gap-1 justify-center items-center text-white w-[46px] min-h-[32px] rounded-[6px] bg-[#B70014]">
             {
@@ -72,7 +72,7 @@ const ResultDetail = ({selectedProduct,setSelectedProduct,favorites,setFavorites
                 }
             </div>
             </div>
-            <div className='text-[12px] flex justify-end pt-10'>
+            <div className='text-[12px] flex justify-end pt-4 xs:pt-0'>
             {
                 (selectedProduct.storeInfo && selectedProduct.storeInfo.workingHours && selectedProduct.storeInfo.workingHours[0].open ) ? selectedProduct.storeInfo.workingHours[0].open : "-"
             }{" "} / {" "}
