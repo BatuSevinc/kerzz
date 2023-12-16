@@ -14,6 +14,9 @@ import FilterButton from '../assest/FilterButton.svg'
 import Results from '../components/Results'
 import VisneliSarmal from '../assest/visneliSarmal.png'
 import ShoppingBasket from '../assest/shopping_basket.svg'
+import ResultDetail from "../components/ResultDetail";
+import { MdFavoriteBorder } from "react-icons/md";
+import { MdFavorite } from "react-icons/md";
 export {
     Homepage,
     Navbar,
@@ -31,4 +34,7 @@ export {
     Results,
     VisneliSarmal,
     ShoppingBasket,
+    ResultDetail,
+    MdFavoriteBorder,
+    MdFavorite
 }

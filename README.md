@@ -23,13 +23,16 @@ Kullanıcıya mağaza listesini filtreleme imkanı sunar.
 #### 6- Sepet İşlevi: 
 Kullanıcının sepetine ürün eklemesine, çıkarmasına ve sipariş vermesine olanak tanır.
 
-#### 7- Fatura Oluşturma: 
-Kullanıcının sipariş vermesi sonucu otomatik olarak bir fatura oluşturur.
+#### 7- Favori Oluşturma: 
+Kullanıcının favorilere eklemesi sonucu eklenenler localStorage'a ve navbar kısmında bulunan favoriler kısmına eklenir. Kullanıcı tarayıcıyı kapatsa bile favoriye ekledikleri localStorage'de saklanarak kullanıcının tekrar giriş yapması halinde önceden eklediği favorilere ulaşabilir.
 
-#### 8- Skeleton Ekranları: 
+#### 8- Ürün Detayı:
+Kullanıcı istediği ürünün üzerine tıklayarak daha detaylı bilgiye ulaşabilir. İsterse detay kısmından favorilere ekleyebilir veya favorilerden kaldırabilir.
+
+#### 9- Skeleton Ekranları: 
 Eksik veya gelmeyen bilgiler için kullanıcıya bilgi vermek amacıyla skeleton ekranları kullanır.
 
-#### 9- Responsive (Duyarlı) Tasarım: 
+#### 10- Responsive (Duyarlı) Tasarım: 
 Farklı ekran boyutlarına uyum sağlayacak şekilde tasarlanmıştır.
 
 ### KULLANILAN PAKETLER

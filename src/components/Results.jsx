@@ -3,7 +3,7 @@ import { ShoppingBasket, Group1 } from "../helpers";
 import calculateDistance from '../helpers/CalculateDistance'
 import axios from "axios";
 import _ from "lodash";
-const Results = ({searchValue,filterSelected}) => {
+const Results = ({searchValue,filterSelected,setSelectedProduct}) => {
   const apiKey = process.env.REACT_APP_API_KEY;
   const apiUrl = process.env.REACT_APP_BASE_URL
 
@@ -14,6 +14,7 @@ const Results = ({searchValue,filterSelected}) => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const pageSize = 24;
+
   useEffect(() => {
     const successHandler = (position) => {
       const { latitude, longitude } = position.coords;
@@ -104,10 +105,17 @@ if (filterSelected === "3Point") {
         <p>{'Konum bilgileri alınamadı. Konum Filtrelemesi Uygulanamadı.'}</p>
       )}
       <p className="font-semibold text-[14px] leading-[30px] md:text-[20px] lg:[24px] md:text-center">Sonuçlar</p>
+      {sortedDatas.length == 0 ? <div className="flex justify-center items-center">
+        Aradığınız Kritere Uygun Veri Bulunamadı.
+      </div>
+      :
       <div className="flex justify-center flex-wrap gap-[15px]">
-      {sortedDatas.map((data, index) => (
-        <div key={index} className="search-box-shadow relative rounded-[9pt]" style={{ maxWidth: data.images && data.images.length > 0 ? data.images[0].imageSize + 'px' : '400px' }}>
+      {sortedDatas && sortedDatas.map((data, index) => (
+        <div key={index}  
+        onClick={() => setSelectedProduct(data)}
+        className="search-box-shadow cursor-pointer relative rounded-[9pt]" style={{ maxWidth: data.images && data.images.length > 0 ? data.images[0].imageSize + 'px' : '400px' }}>
           {data.images && data.images.length > 0 ? (
+            
             <img
             className="rounded-[9pt]"
               src={data.images[0].base64}
@@ -117,13 +125,12 @@ if (filterSelected === "3Point") {
             />
           ) : (
             <img
-            className="rounded-[9pt]"
+            className="rounded-[9pt] h-[250px]"
               src={
                 "https://i0.wp.com/css-tricks.com/wp-content/uploads/2017/08/card-skeleton@2x.png?w=300&ssl=1"
               }
               alt={data.title}
               width={400}
-              height={400}
             />
           )}
           <img className="rounded-[9pt]" src={data.images} alt="" />
@@ -150,7 +157,7 @@ if (filterSelected === "3Point") {
             <div className="flex gap-1">
               <img className="w-[12px] mb-0.5" src={ShoppingBasket} alt="" />
               <p className="text-[#1A1824] font-semibold text-[12px] opacity-50">
-                Min. Sipariş Tutarı : ₺{data.storeInfo.minOrderPrice}
+                Min. Sipariş Tutarı : ₺{data.storeInfo && data.storeInfo.minOrderPrice && data.storeInfo.minOrderPrice}
               </p>
             </div>
           </div>
@@ -183,7 +190,7 @@ if (filterSelected === "3Point") {
           </div>
         </div>
       ))}
-      </div>
+      </div>}
       {loading && <p>Loading...</p>}
     </div>
   );

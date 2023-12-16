@@ -17,10 +17,10 @@ const Search = ({searchValue,setSearchValue,setFilter,filter,setFilterSelected,f
         <img className='absolute top-4 left-[15px] w-[15pt] leading-[22pt]' src={SearchIcon} alt="" />
         {
           searchValue.length > 0 ?
-         <div className='absolute top-3 right-5' onClick={() => setSearchValue("")}> <IoMdClose size={24}/></div> 
+         <div className='absolute top-3 right-5 cursor-pointer' onClick={() => setSearchValue("")}> <IoMdClose size={24}/></div> 
          :
          <>
-        <img onClick={() => setFilter(!filter)} className={`absolute top-1 right-3 rounded-full duration-500 transition-all ${filter ? "rotate-90" : ""}`} src={FilterButton} alt="" />
+        <img onClick={() => setFilter(!filter)} className={`absolute top-1 right-3 rounded-full cursor-pointer duration-500 transition-all ${filter ? "rotate-90" : ""}`} src={FilterButton} alt="" />
         {
           filterSelected &&
           <div className='text-[8px] absolute top-7 right-5 px-1 bg-yellow-400 rounded-[100%]'>1</div>
