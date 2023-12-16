@@ -10,7 +10,7 @@ const Bill = ({ billBasket, setBillBasket, favorites, setFavorites }) => {
   return (
     <div
       className={`flex flex-col z-10 gap-3 overflow-auto fixed ${
-        billBasket ? "translate-y-[0px]" : "translate-y-[-1150px]"
+        billBasket ? "translate-y-[0px]" : "translate-y-[-1450px]"
       } bg-[#e3ebed] pt-20 p-5 inset-0 w-[100vw] h-[100%] duration-1000 transition-all`}
     >
       <div

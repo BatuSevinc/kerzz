@@ -18,7 +18,7 @@ const ResultDetail = ({selectedProduct,setSelectedProduct,favorites,setFavorites
     <div className='fixed w-[100vw] bg-[rgba(0,0,0,0.7)] h-[100vh] top-0 left-0'>
         <div className='fixed flex flex-col top-40 left-2 sm:left-4 md:left-6 lg:left-8 xl:left-9 2xl:left-10 bg-[#cdcdcc] w-[95vw] h-[60vh] lg:h-[80vh] lg:top-20 p-3'>
             <div className='flex justify-end'><IoMdClose className='cursor-pointer' onClick={() => setSelectedProduct("")} size={24}/></div>
-            <div className='pt-3 text-[12px] pl-2 text-gray-500 xs:flex xs:justify-center'>{selectedProduct.type && selectedProduct.type}</div>
+            <div className=' text-[12px] pl-2 text-gray-500 xs:flex xs:justify-center'>{selectedProduct.type && selectedProduct.type}</div>
             <div className='pb-3 xs:flex xs:justify-center'>
                         {selectedProduct.images.length > 0 ? (
                             <img
@@ -72,7 +72,7 @@ const ResultDetail = ({selectedProduct,setSelectedProduct,favorites,setFavorites
                 }
             </div>
             </div>
-            <div className='text-[12px] flex justify-end pt-4 xs:pt-0'>
+            <div className='text-[12px] flex justify-end pt-2 xs:pt-0'>
             {
                 (selectedProduct.storeInfo && selectedProduct.storeInfo.workingHours && selectedProduct.storeInfo.workingHours[0].open ) ? selectedProduct.storeInfo.workingHours[0].open : "-"
             }{" "} / {" "}

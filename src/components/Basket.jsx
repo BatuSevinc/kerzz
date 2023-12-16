@@ -2,7 +2,7 @@ import React from 'react'
 import {IoMdClose} from '../helpers'
 const Basket = ({toggleBasket,setToggleBasket}) => {
   return (
-    <div className={`menu-box-shadow z-10 border-t border-[#b4b3b3] flex flex-col gap-3 overflow-auto fixed ${toggleBasket ? "translate-y-[80px]" : "translate-y-[-1150px]"} bg-[#f5f0f0] pt-20 p-5 inset-0 w-[100vw] h-[93%] duration-1000 transition-all`}>
+    <div className={`menu-box-shadow z-10 border-t border-[#b4b3b3] flex flex-col gap-3 overflow-auto fixed ${toggleBasket ? "translate-y-[80px]" : "translate-y-[-1450px]"} bg-[#f5f0f0] pt-20 p-5 inset-0 w-[100vw] h-[93%] duration-1000 transition-all`}>
                 <div onClick={() => setToggleBasket(false)} className='absolute top-5 right-5 cursor-pointer'>
             <IoMdClose size={22} color='#595656'/>
             </div>
